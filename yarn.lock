@@ -6041,9 +6041,9 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-imported-component@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/react-imported-component/-/react-imported-component-4.6.1.tgz#a4b67c15d00cc23fdae762286ed21b7eee89a40d"
+react-imported-component@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/react-imported-component/-/react-imported-component-4.6.2.tgz#0a7f35bf021adf2a1f2a4874ce72418a0995db3d"
   dependencies:
     babel-plugin-syntax-dynamic-import "^6.18.0"
     babel-polyfill "^6.26.0"
