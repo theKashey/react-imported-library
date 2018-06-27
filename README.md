@@ -11,9 +11,9 @@
   <a href="https://www.npmjs.com/package/react-imported-library">
     <img src="https://img.shields.io/npm/v/react-imported-library.svg?style=flat-square" />
   </a>
-    
-  <a href="https://circleci.com/gh/theKashey/react-imported-library/tree/master">
-   <img src="https://img.shields.io/circleci/project/github/theKashey/react-imported-library/master.svg?style=flat-square)" alt="Build status">
+        
+  <a href="https://travis-ci.org/theKashey/react-imported-library">
+   <img src="https://travis-ci.org/theKashey/react-imported-library.svg?branch=master" alt="Build status">
   </a> 
     
   <img src="https://badges.greenkeeper.io/theKashey/react-imported-library.svg" />
@@ -31,6 +31,7 @@ Use the power of renderprop to delived a Library as a React component. Based on
  
 ## Usage
 
+Have you heard, than moment.js is super hudge? Code split it!
 ```javascript
 import {importedLibrary, importedLibraryDefault, setConfig} from 'react-imported-library';
 
@@ -38,18 +39,27 @@ import {importedLibrary, importedLibraryDefault, setConfig} from 'react-imported
 setConfig({SSR: false});
 
 // this will import `default` export
-const Moment = importedLibraryDefault( () => import('moment.js'));
+const Moment = importedLibraryDefault( () => import('momentjs'));
 
 <Moment>
- { (momentjs) => <span> {moment(date).format(FORMAT)}
+ { (momentjs) => <span> {momentjs(date).format(FORMAT)}
 </Moment>
+```
 
+May be you have a small library, you may use somewhere inside your components?
+
+Codesplit it! 
+```js
+import {importedLibrary} from 'react-imported-library';
 const Utils = importedLibrary( () => import('./utils.js'));
 
 <Utils>
  { ({a,b,c }) => <span> {a(b+c())}
 </Utils>
+```
 
+May be you also have to caclucate something heavy, not to do it on every `render`?
+```js
 // you may use "initialization hook" to offload some computations
 
 <Utils
