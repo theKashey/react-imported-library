@@ -1,6 +1,6 @@
 {
   "name": "react-imported-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Code split any library using React renderProps",
   "main": "dist/index.js",
   "scripts": {
