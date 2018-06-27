@@ -33,16 +33,16 @@ Use the power of renderprop to delived a Library as a React component. Based on
 
 Have you heard, than moment.js is super hudge? Code split it!
 ```javascript
-import {importedLibrary, importedLibraryDefault, setConfig} from 'react-imported-library';
+import {importedLibraryDefault, setConfig} from 'react-imported-library';
 
-// do you need SSR support? Probably not (affect react-imported-component settings)
+// do you need SSR support? Probably not (affects react-imported-component settings)
 setConfig({SSR: false});
 
 // this will import `default` export
 const Moment = importedLibraryDefault( () => import('momentjs'));
 
 <Moment>
- { (momentjs) => <span> {momentjs(date).format(FORMAT)}
+ { (momentjs) => <span> {momentjs(date).format(FORMAT)}</span> }
 </Moment>
 ```
 
@@ -54,7 +54,7 @@ import {importedLibrary} from 'react-imported-library';
 const Utils = importedLibrary( () => import('./utils.js'));
 
 <Utils>
- { ({a,b,c }) => <span> {a(b+c())}
+ { ({a,b,c }) => <span> {a(b+c())} </span> }
 </Utils>
 ```
 
