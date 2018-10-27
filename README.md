@@ -28,6 +28,7 @@ Use the power of renderprop to delived a Library as a React component. Based on
 - 🏎 Sync on server, and for already loaded stuff, async on client.
 - 🚀 Bundler-independent SSR (when used with react-imported-component).
 - 🔒 Written in TypeScript.
+- 😴 Suspense friendly
  
 ## Usage
 
@@ -44,6 +45,15 @@ const Moment = importedLibraryDefault( () => import('momentjs'));
 <Moment>
  { (momentjs) => <span> {momentjs(date).format(FORMAT)}</span> }
 </Moment>
+
+// You can use suspense
+const Moment = importedLibraryDefault( () => import('momentjs'), { async: true });
+
+<Suspense>
+    <Moment>
+     { (momentjs) => <span> {momentjs(date).format(FORMAT)}</span> }
+    </Moment>
+</Suspense>
 ```
 
 May be you have a small library, you may use somewhere inside your components?
@@ -58,7 +68,7 @@ const Utils = importedLibrary( () => import('./utils.js'));
 </Utils>
 ```
 
-May be you also have to caclucate something heavy, not to do it on every `render`?
+May be you also have to calculate something heavy, not to do it on every `render`?
 ```js
 // you may use "initialization hook" to offload some computations
 
@@ -72,20 +82,27 @@ May be you also have to caclucate something heavy, not to do it on every `render
 ```
 
 ## API
-
-- importedLibrary(`importer`, options?): Component
+#### importedLibrary
+- `importedLibrary(importer, options?): Component`
   - `importer` is an `import` statement, or any Promise resolver
   - options 
     - options.async:boolean - enables React.suspense, ie throws a Promise on loading
     - options.exportPicker - allows you to "pick" export from the original file
     
-- importedLibraryDefault - is just importedLibrary with _exportPicker_ configured to pick `.default`
+#### importedLibraryDefault    
+- `importedLibraryDefault(importer, options?): Component` - is just importedLibrary with `exportPicker` configured to pick `.default`
 
+#### lazyLibrary    
+- `lazyLibrary(importer): Component` - is just importedLibrary with `async` configured be __true__
+
+
+#### all helpers returns "Component"
 - Component
-  - `initial: (library: T) => K;` - state initializator
+  - `initial: (library: T) => K;` - state initializator, state will be passed as second argument to a children.
   - `children: (library: T, state: K) => React.ReactNode` - function-as-children
+  - -- does not work in async mode --
   - `error: ReactComponent` - error indicator
-  - `loading: ReactComponent` - __unthrottled__ loading indicator.       
+  - `loading: ReactComponent` - __unthrottled__ loading indicator.         
 
 
 ## Licence

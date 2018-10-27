@@ -75,3 +75,9 @@ export function importedLibraryDefault<T, B=T>
   : (<K extends State>(props: LibraryProps<B, K>) => ReactElement<any> | null) {
   return importedLibrary(() => importer().then(data => data.default), options);
 }
+
+export function lazyLibrary<T, B=T>
+(importer: () => Promise<T>)
+  : (<K extends State>(props: LibraryProps<B, K>) => ReactElement<any> | null) {
+  return importedLibrary(() => importer(), { async: true });
+}

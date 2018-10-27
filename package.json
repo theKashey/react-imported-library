@@ -2,7 +2,9 @@
   "name": "react-imported-library",
   "version": "1.0.1",
   "description": "Code split any library using React renderProps",
-  "main": "dist/index.js",
+  "main": "dist/es5/index.js",
+  "jsnext:main": "dist/es2015/index.js",
+  "module": "dist/es2015/index.js",
   "scripts": {
     "test": "ts-react-toolbox test",
     "bootstrap": "ts-react-toolbox init",
@@ -29,16 +31,16 @@
     "react": "^16.3.0"
   },
   "devDependencies": {
-    "ts-react-toolbox": "^0.1.10"
+    "ts-react-toolbox": "^0.1.22"
   },
   "dependencies": {
     "proptypes": "^1.1.0",
-    "react-imported-component": "^4.6.2"
+    "react-imported-component": "^5.1.1"
   },
   "engines": {
     "node": ">=8.5.0"
   },
-  "types": "dist/index.d.ts",
+  "types": "dist/es5/index.d.ts",
   "files": [
     "dist"
   ],
